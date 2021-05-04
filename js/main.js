@@ -132,7 +132,7 @@ bandera=!bandera;
 
 	//SI es la segunda tirada
 	//else{
-
+// CUANDO LA TIRADA ES MAYOR QUE 1, CUANDO SE ESTABLECE PUNTO.
 
 		if (arregloJugadores[0].tirada > 1)
 		{
@@ -147,7 +147,7 @@ bandera=!bandera;
 		arregloJugadores[1].puntos ++;
 
 	}
-	//Validar quien sacó el 7 y perdió jajajajajaj
+	//Validar quien sacó el 7 y perdió
 	if (arregloJugadores[0].resultados== 7){
 
 		arregloJugadores[1].marcador++;
