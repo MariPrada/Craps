@@ -1,6 +1,18 @@
 body{
 	background-color: white; 
 }
+
+/* El elemento con id="demo" */
+#PanelInstruciones {
+  background-image: url(https://i.3djuegos.com/files_foros/4z/4zei.jpg);
+  width:600px;
+height:400px;
+}
+
+ 
+}
+
+
 .dado{
 background-image:url(https://i.pinimg.com/originals/0b/61/ba/0b61ba096406865f0e76a9b07e36dc69.png);
 background-position:-803px;
@@ -42,7 +54,7 @@ html {
   font-family: system-ui, sans-serif;
 }
 main {
-  background: linear-gradient(#454545, #676767, #454545);
+  background: linear-gradient(#db4beeb0, #faf9f9, #8a76f0);
   display: grid;
   grid-template-columns: 1fr;
   height: 100vh;

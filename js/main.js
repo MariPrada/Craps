@@ -5,13 +5,14 @@
 	var suma;
 	var Player1='';
 	var Player2='';
-	var bandera= true; 
+	var bandera= false; 
 	var partida= true;
 	var tirada= 1;
 	var scoreplayer1= 0;
 	var scoreplayer2= 0;
 	let arregloJugadores = []
 	var TiradaDados=0
+
 
 	window.onload = init;
 
@@ -35,12 +36,12 @@
 
 
 	function tirardado(){
-		 const dice = [...document.querySelectorAll(".die-list")];
-  dice.forEach(die => {
-    toggleClasses(die);
-    die.dataset.roll = getRandomNumber(1, 6);
-    TiradaDados+=die.dataset.roll;
-  });
+			 const dice = [...document.querySelectorAll(".die-list")];
+			  dice.forEach(die => {
+			    toggleClasses(die);
+			    die.dataset.roll = getRandomNumber(1, 6);
+			    TiradaDados+=die.dataset.roll;
+			  });
 	//return Math.floor(Math.random() * 6) + 1 ;
 	}
 
@@ -57,7 +58,17 @@
 	//actualizarDado(dado1,tiro_1);
 	//actualizarDado(dado2,tiro_2);
 	rollDice();
-	arregloJugadores [posicion].tirada ++; 
+	//Aumentamo la tirada del jugador
+	arregloJugadores[posicion].tirada ++; 
+
+			let ganador=1;
+			let perdedor=0;
+			if(posicion == 1)
+			{
+				ganador=0;perdedor=1;
+			}
+
+	
 	
 
 //Que define a cada tirada 
@@ -66,13 +77,25 @@
 
 arregloJugadores [posicion].resultados = suma;
 
-	document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nombre+ ", tu tirada Número: " +arregloJugadores [posicion].tirada+ " fue de: "+arregloJugadores [posicion].resultados;
+if (arregloJugadores [posicion].tirada > 0){
+	
+document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nombre+ ", tu tirada Número: " +arregloJugadores [posicion].tirada+ " fue de: "+arregloJugadores [posicion].resultados;
+	
+	//setTimeout(() => { document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nombre+ ", tu tirada Número: " +arregloJugadores [posicion].tirada+ " fue de: "+arregloJugadores [posicion].resultados  }, 500);
+	}
+
+
 //validar primera tirada 
 	if (arregloJugadores[posicion].tirada == 1)
 	{
+		//Guardamos la primer tirada del jugador
+		arregloJugadores[posicion].primer=suma;
+
 		// validar ganador partida 
 		if(arregloJugadores[posicion].resultados == 7 || arregloJugadores[posicion].resultados ==  11)
 		{
+			//Controlar el ganador y perdedor
+			
 			arregloJugadores[posicion].marcador++;
 			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[posicion].nombre + " en la primera tirada";
 			resetearPartida();
@@ -81,34 +104,57 @@ arregloJugadores [posicion].resultados = suma;
 		
 		else if (arregloJugadores[posicion].resultados == 2 || arregloJugadores[posicion].resultados == 3 || arregloJugadores[posicion].resultados == 12)
 		{
-			let ganador=1;
-			let perdedor=0;
-			if(posicion==1)
-			{
-				ganador=0;perdedor=1;
-			}
+			
 			arregloJugadores[ganador].marcador++;
 			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[ganador].nombre + " en la primera tirada";
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 
 		}
-		if (partida== false)
-		{document.getElementById("mensaje").innerHTML="partidas ganadas Jugador 1: " + arregloJugadores[0].marcador + " partidas ganadas Jugador 2: " + arregloJugadores[1].marcador;
-		partida = true
-
+	
 	}
-		
-	}
+	// CUANDO LA TIRADA ES MAYOR QUE 1, CUANDO SE ESTABLECE PUNTO.
+	else if (arregloJugadores[posicion].tirada > 1)
+		{
 
+			//Vaidar si gané con el mismo número de la primer tirada
+			if(arregloJugadores[posicion].primer==arregloJugadores[posicion].resultados)
+			{
+				arregloJugadores[posicion].marcador++;
+			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[posicion].nombre + " porque obtuvo el mismo número de la primer tirada";
+			//funcion para resetear las variables para la siguiente partida
+			resetearPartida();
+			}
+
+			 else if (arregloJugadores[posicion].resultados == 4 || arregloJugadores[posicion].resultados == 5 || arregloJugadores[posicion].resultados == 6 || arregloJugadores[posicion].resultados == 8 ||arregloJugadores[posicion].resultados == 9 || arregloJugadores[posicion].resultados == 10){ 
+			arregloJugadores[posicion].puntos ++;
+		}
+	
+	//Validar quien sacó el 7 y perdió
+	else if (arregloJugadores[posicion].resultados== 7){
+
+			arregloJugadores[ganador].marcador++;
+			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[ganador].nombre + " porque el otro obtuvo un SIETE";
+			//funcion para resetear las variables para la siguiente partida
+			resetearPartida();
+	}
+	
+			
+}
 	}
 
 function resetearPartida(){
+	//console.log("gap alguien")
 	partida= false;
+	bandera = false;
+	//setTimeout(() => { document.getElementById("resultado").innerHTML= ""  }, 500);
+		document.getElementById("resultado").innerHTML= "";
 	
 		arregloJugadores[0].puntos=0;
 		arregloJugadores[0].tirada=0;
 		arregloJugadores[0].resultados=0;
+		arregloJugadores[0].primer=0;
+		arregloJugadores[1].primer=0;
 		arregloJugadores[1].puntos=0;
 		arregloJugadores[1].tirada=0;
 		arregloJugadores[1].resultados=0
@@ -117,65 +163,33 @@ function resetearPartida(){
 }
 
 	function jugar(){
-	document.getElementById("partidas").innerHTML="Partidas gandas:<br> "+arregloJugadores[0].nombre+": "+arregloJugadores[0].marcador+"<br> "+arregloJugadores[1].nombre+": "+arregloJugadores[1].marcador;
+		//Si es una partida nueva, lanzará el jugador 1.
+		if(!partida)
+		{
+				partida=true;bandera=false;
+		}
+		//console.log(bandera)
+	document.getElementById("partidas").innerHTML="Partidas ganadas:<br> "+arregloJugadores[0].nombre+": "+arregloJugadores[0].marcador+"<br> "+arregloJugadores[1].nombre+": "+arregloJugadores[1].marcador;
 	if(bandera)
 	{
 		document.getElementById("mensaje").innerHTML=" Turno para el jugador " + Player2; 
-		validarResultado(0);
+		validarResultado(1);
 	}
 	else{
 		document.getElementById("mensaje").innerHTML=" Turno para el jugador " + Player1; 
-		validarResultado(1);
+		validarResultado(0);
 	}
 bandera=!bandera;
 
-
-	//SI es la segunda tirada
-	//else{
-// CUANDO LA TIRADA ES MAYOR QUE 1, CUANDO SE ESTABLECE PUNTO.
-
-		if (arregloJugadores[0].tirada > 1)
-		{
-			 if (arregloJugadores[0].resultados == 4 || arregloJugadores[0].resultados == 5 || arregloJugadores[0].resultados == 6 || arregloJugadores[0].resultados == 8 ||arregloJugadores[0].resultados == 9 || arregloJugadores[0].resultados == 10){ 
-
-		arregloJugadores[0].puntos ++;
-
 	}
-
-	if (arregloJugadores[1].resultados == 4 || arregloJugadores[1].resultados == 5 || arregloJugadores[1].resultados == 6 || arregloJugadores[1].resultados == 8 || arregloJugadores[1].resultados == 9 || arregloJugadores[1].resultados == 10){ 
-
-		arregloJugadores[1].puntos ++;
-
-	}
-	//Validar quien sacó el 7 y perdió
-	if (arregloJugadores[0].resultados== 7){
-
-		arregloJugadores[1].marcador++;
-		 	document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[1].nombre + " porque el jugador " +arregloJugadores[0].nombre+ " obtuvo " + arregloJugadores[0].resultados;
-		 	//funcion para resetear las variables para la siguiente partida
-		 	resetearPartida();
-	}
-
-	if (arregloJugadores[1].resultados== 7){
-
-	arregloJugadores[0].marcador++;
-		 	document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[0].nombre + " porque el jugador " +arregloJugadores[1].nombre+ " obtuvo " + arregloJugadores[1].resultados ;
-		 	
-		 	//funcion para resetear las variables para la siguiente partida
-		 	resetearPartida();
-	}
-
-		
-		}	
-	//}
-	
-		}
 
 	//Función Guardar Players
 	function guardar_players(){
 		Player1=document.getElementById("player1").value;
 		Player2=document.getElementById("player2").value;
 		document.getElementById("Jugadores").className="oculto";
+		document.getElementById("PanelInstruciones").className="oculto";
+		
 		document.getElementById("Panel2").className="mostrar";
 		document.getElementById("mensaje").innerHTML=" Inicia el jugador " + Player1; 
 		//alert(Player2);
@@ -185,7 +199,7 @@ bandera=!bandera;
 		nombre : document.getElementById("player1").value,
 		resultados : 0,
 		marcador : 0,
-		tirada : 0,
+		tirada : 0,	
 		puntos : 0,
 		marcador:0,
 		primer:0
