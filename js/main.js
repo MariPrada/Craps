@@ -79,7 +79,7 @@ arregloJugadores [posicion].resultados = suma;
 
 if (arregloJugadores [posicion].tirada > 0){
 	
-document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nombre+ ", tu tirada Número: " +arregloJugadores [posicion].tirada+ " fue de: "+arregloJugadores [posicion].resultados;
+document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nombre+ ", tu tirada Número =  " +arregloJugadores [posicion].tirada+ ", fue de : "+arregloJugadores [posicion].resultados;
 	
 	//setTimeout(() => { document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nombre+ ", tu tirada Número: " +arregloJugadores [posicion].tirada+ " fue de: "+arregloJugadores [posicion].resultados  }, 500);
 	}
@@ -97,7 +97,7 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 			//Controlar el ganador y perdedor
 			
 			arregloJugadores[posicion].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[posicion].nombre + " en la primera tirada";
+			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[posicion].nombre + " en la primera tirada.";
 			resetearPartida();
 		}
 			
@@ -106,7 +106,7 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 		{
 			
 			arregloJugadores[ganador].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[ganador].nombre + " en la primera tirada";
+			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[ganador].nombre + " en la primera tirada.";
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 
@@ -121,7 +121,7 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 			if(arregloJugadores[posicion].primer==arregloJugadores[posicion].resultados)
 			{
 				arregloJugadores[posicion].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[posicion].nombre + " porque obtuvo el mismo número de la primer tirada";
+			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[posicion].nombre + ", porque obtuvo el mismo número de la primer tirada.";
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 			}
@@ -134,7 +134,7 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 	else if (arregloJugadores[posicion].resultados== 7){
 
 			arregloJugadores[ganador].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador" + arregloJugadores[ganador].nombre + " porque el otro obtuvo un SIETE";
+			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[ganador].nombre + ", porque el otro jugador obtuvo un SIETE.";
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 	}
