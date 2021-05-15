@@ -21,9 +21,7 @@
 	function init(){
 		document.getElementById("roll-button").addEventListener("click", jugar);
 
-	//boton_tirar = document.getElementById("boton_tirar");
-	//boton_tirar.addEventListener("click",jugar);
-
+	
 	//Evento para guardar los players
 	btn_guardar = document.getElementById("boton_guardar");
 	btn_guardar.addEventListener("click",guardar_players);
@@ -97,7 +95,8 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 			//Controlar el ganador y perdedor
 			
 			arregloJugadores[posicion].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[posicion].nombre + " en la primera tirada.";
+			//document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[posicion].nombre + " en la primera tirada.";
+			mostrarVentana("Ganó el jugador " + arregloJugadores[posicion].nombre + " en la primera tirada.");
 			resetearPartida();
 		}
 			
@@ -106,7 +105,8 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 		{
 			
 			arregloJugadores[ganador].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[ganador].nombre + " en la primera tirada.";
+			//document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[ganador].nombre + " en la primera tirada.";
+			mostrarVentana("Ganó el jugador " + arregloJugadores[ganador].nombre + " en la primera tirada.");
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 
@@ -121,7 +121,8 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 			if(arregloJugadores[posicion].primer==arregloJugadores[posicion].resultados)
 			{
 				arregloJugadores[posicion].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[posicion].nombre + ", porque obtuvo el mismo número de la primer tirada.";
+			//document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[posicion].nombre + ", porque obtuvo el mismo número de la primer tirada.";
+			mostrarVentana("Ganó el jugador " + arregloJugadores[posicion].nombre + ", porque obtuvo el mismo número de la primer tirada.");
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 			}
@@ -134,13 +135,23 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 	else if (arregloJugadores[posicion].resultados== 7){
 
 			arregloJugadores[ganador].marcador++;
-			document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[ganador].nombre + ", porque el otro jugador obtuvo un SIETE.";
+			//document.getElementById("mensaje").innerHTML="Ganó el jugador " + arregloJugadores[ganador].nombre + ", porque el otro jugador obtuvo un SIETE.";
+			mostrarVentana("Ganó el jugador " + arregloJugadores[ganador].nombre + ", porque el otro jugador obtuvo un SIETE.");
 			//funcion para resetear las variables para la siguiente partida
 			resetearPartida();
 	}
 	
 			
 }
+	}
+
+	function mostrarVentana(mensaje){
+
+		Swal.fire(
+  'CV ganaste!',
+  mensaje,
+  'success'
+)
 	}
 
 function resetearPartida(){
@@ -163,6 +174,7 @@ function resetearPartida(){
 }
 
 	function jugar(){
+		
 		//Si es una partida nueva, lanzará el jugador 1.
 		if(!partida)
 		{

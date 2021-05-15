@@ -5,31 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title> CASINO </title>
 <link rel="stylesheet" href="css/main.css">
+    
 <script src="js/main.js"></script>
+<script src="js/sweetalert2.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="css/sweetalert2.min.css" rel="stylesheet" type="text/css" media="all"/>
+
+
+
 </head>
 
-<body>
-  <div id="Jugadores">
-  <input type="text" name="player1" id="player1">
-  <br>
-  <input type="text" name="player2" id="player2">
+<body class="text-center">
 
-<input type="button" value="Guardar Jugadores" id="boton_guardar"s>
-</div>
+<div class="head" id="Jugadores">
+    <div class="logo">
+      <div class="logo-top">
+        <h1>REGLAS DEL JUEGO</h1>
+      </div>
+      <div class="logo-bottom">
+       <IMG SRC="https://www.cabroworld.com/wp-content/uploads/2020/02/anon-hack.jpg">
+      </div>
+    </div>    
+    <div class="login">
+      <div class="sap_tabs">
+        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+          <ul class="resp-tabs-list">
+            <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>KSINO</span></li>
+            <div class="clearfix"></div>
+          </ul>            
+          <div class="resp-tabs-container">
+           <div class="login-top">
+                <form>
+                  <input type="text" class="text" placeholder="Jugador1" id="player1" />
+                  <input type="text" class="text" placeholder="Jugador2" id="player2" />    
+                </form>
+                <div class="login-bottom login-bottom1">
+                  <div class="submit">
+                    <input type="button" class="btn-submit" value="jugar" id="boton_guardar" />
+                  </div>
+                 
+                  <div class="clear"></div>
+                </div>  
+              </div>             
+          </div>  
+        </div>
+      </div>  
+    </div>  
+    <div class="clear"></div>
+  </div>  
 
-<div id="PanelInstruciones">
-  <a class= "btn" href="file:///C:/Users/jmigu/OneDrive/Escritorio/Introduccion%202/Craps/creditos/Creditos.html"> Créditos </a>
-
-  
-  
-</div>
 
 
+<div id="Panel2"  class="oculto">
 
-<div id="Panel2" class="oculto">
-  <div id= "partidas"></div>
-<div id= "mensaje"></div>
-<div id="resultado"></div>
+
+  <div id= "partidas" class="fondob"></div>
+<div id= "mensaje" class="fondob"> </div>
+<div id="resultado" class="fondob"></div>
   <main>
   <div class="dice">
     <ol class="die-list even-roll" data-roll="1" id="die-1">
@@ -103,10 +135,16 @@
       </li>
     </ol>
   </div>
-  <button type="button" id="roll-button">Roll Dice</button>
+  <button type="button" id="roll-button">Tirar dado</button>
 </main>
 </div>
 
+<div id="PanelInstruciones">
+  <a class= "btn" href="file:///C:/Users/marie/Desktop/git%20hub/Craps/creditos/Creditos.html"> Créditos </a>
+
+  
+  
+</div>
 
 </body>
 </html>
