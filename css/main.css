@@ -1,7 +1,9 @@
-
+body {
+  background: linear-gradient(#343260, #37216d, #4b30a8);
+}
 
 .dado{
-background-image:url(https://i.pinimg.com/originals/0b/61/ba/0b61ba096406865f0e76a9b07e36dc69.png);
+background: linear-gradient(#343260, #37216d, #4b30a8);;
 background-position:-803px;
 width:157px;
 height:156px;
@@ -39,7 +41,7 @@ html {
   font-family: system-ui, sans-serif;
 }
 main {
-  background: linear-gradient(#48FFA8, #00FF86, #01964F);
+  background: linear-gradient(#343260, #37216d, #4b30a8);;
     display: grid;
     grid-template-columns: 1fr;
     height: 100vh;
