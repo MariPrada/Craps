@@ -148,7 +148,7 @@ document.getElementById("resultado").innerHTML= arregloJugadores [posicion].nomb
 	function mostrarVentana(mensaje){
 
 		Swal.fire(
-  'CV ganaste!',
+  'Ganó',
   mensaje,
   'success'
 )
